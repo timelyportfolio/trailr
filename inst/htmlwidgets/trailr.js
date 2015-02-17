@@ -18,7 +18,9 @@ HTMLWidgets.widget({
 
     var trail = d3.layout.trail().coordType('xy')
 
-    var pathdata = trail.data(HTMLWidgets.dataframeToD3(x.data)).layout()
+    var pathdata = trail
+      .data(HTMLWidgets.dataframeToD3(x.data))
+      .layout()
 
     paths = instance.svg.selectAll("line").data(pathdata)
 
@@ -28,13 +30,21 @@ HTMLWidgets.widget({
       .style("stroke","black")
       .transition()
       .delay(function(d,i) {return i*100})
-      .attr("x0",function(d) {return
-      d['x0']})
-      .attr("x1",function(d) {return d.x1})
-      .attr("y1",function(d)
-      {return d.y1})
-      .attr("y2",function(d) {return d.y2})
-      .attr("x2",function(d) {return d.x2})
+      .attr("x0",function(d) {
+        return  d.x0
+      })
+      .attr("x1",function(d) {
+        return d.x1
+      })
+      .attr("y1",function(d) {
+        return d.y1
+      })
+      .attr("y2",function(d) {
+        return d.y2
+      })
+      .attr("x2",function(d) {
+        return d.x2
+      })
       .style("opacity",.5)
       .transition()
       .duration(5000)
